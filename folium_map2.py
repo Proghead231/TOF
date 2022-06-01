@@ -13,8 +13,10 @@ import matplotlib as plt
 from streamlit_folium import st_folium
 import folium
 
+path1 = os.path.dirname(__file__)
+
 #File path for the pandas dataframe
-DATA_URL = ("/Proghead231/TOF/Municipality_level_TOF_Forest.csv")
+DATA_URL = (path1+"/Municipality_level_TOF_Forest.csv")
 #app_path = "/Proghead231/TOF/Bagmati_TOF"
 #File path for the boundaries
 input_folder = ("/Proghead231/TOF/Bagmati_Municipalities.shp")
