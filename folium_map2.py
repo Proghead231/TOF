@@ -28,7 +28,7 @@ bound_gdf = gpd.read_file(input_folder).rename(columns = {"LOCAL":"municipality"
 #Merging tabular data with shapefile to get polygons of each municipality along with tabular data
 #Note After this we have the final dataset named as "data" 
 merged_df = table_df.merge(bound_gdf, on = "municipality", how = "left") 
-merged_df_to_csv = merged_df.to_csv(os.path.join("/Proghead231/TOF/", "merged_csv.csv"), header=True ,index = False)
+merged_df_to_csv = merged_df.to_csv(path+"/merged_csv.csv", header=True ,index = False)
 data = pd.read_csv(os.path.join("/Proghead231/TOF/", "merged_csv.csv"))
 data['geometry'] = gpd.GeoSeries.from_wkt(data['geometry'])
 data_gdf = gpd.GeoDataFrame(data, geometry='geometry')
