@@ -85,9 +85,7 @@ else:
     maps(forest_col, custom_scale2)
 
 raw_data = data_gdf[["municipality", "district","tof_area_ha", "forest_area_ha", "total_tree_cover_ha", "tof_percent","forest_percent"]]
-duplicated_row = raw_data[raw_data.duplicated(['municipality'])]
-st.write("duplicated rows in all cols")
-st.write(duplicated_row)
+
 
 if st.checkbox("Show All Data", False):
     st.write(raw_data)
@@ -95,7 +93,7 @@ if st.checkbox("Show All Data", False):
 select_district = st.selectbox("Select district to see district data", (raw_data['district'].unique()))
 st.write(raw_data.loc[raw_data["district"] == select_district][["municipality","tof_area_ha", "forest_area_ha", "total_tree_cover_ha", "tof_percent","forest_percent"]].drop_duplicates(subset = ['municipality'], keep = 'first'))
 
-groups = raw_data[["district", "tof_area_ha","forest_area_ha", "total_tree_cover_ha"]] 
+groups = raw_data[["district", "tof_area_ha","forest_area_ha", "total_tree_cover_ha"]].drop_duplicates(subset = ['municipality'], keep = 'first') 
 grouped = groups.groupby(by = "district").sum()
 #st.write(grouped)
 
