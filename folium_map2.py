@@ -14,10 +14,10 @@ from streamlit_folium import st_folium
 import folium
 
 #File path for the pandas dataframe
-DATA_URL = ("D:\Work\Batmati_TOF\data\Municipality_level_TOF_Forest.csv")
-app_path = "D:\Work\Python\Bagmati_TOF"
+DATA_URL = ("/Proghead231/TOF/Municipality_level_TOF_Forest.csv")
+#app_path = "/Proghead231/TOF/Bagmati_TOF"
 #File path for the boundaries
-input_folder = ("D:\Work\Batmati_TOF\data\Boundary\Bagmati_Municipalities.shp")
+input_folder = ("/Proghead231/TOF/Bagmati_Municipalities.shp")
 
 #Reading boundaries and tablular data
 table_df = pd.read_csv(DATA_URL)
@@ -26,8 +26,8 @@ bound_gdf = gpd.read_file(input_folder).rename(columns = {"LOCAL":"municipality"
 #Merging tabular data with shapefile to get polygons of each municipality along with tabular data
 #Note After this we have the final dataset named as "data" 
 merged_df = table_df.merge(bound_gdf, on = "municipality", how = "left") 
-merged_df_to_csv = merged_df.to_csv(os.path.join("D:\Work\Python\Bagmati_TOF", "merged_csv.csv"), header=True ,index = False)
-data = pd.read_csv(os.path.join("D:\Work\Python\Bagmati_TOF", "merged_csv.csv"))
+merged_df_to_csv = merged_df.to_csv(os.path.join("/Proghead231/TOF/", "merged_csv.csv"), header=True ,index = False)
+data = pd.read_csv(os.path.join("/Proghead231/TOF/", "merged_csv.csv"))
 data['geometry'] = gpd.GeoSeries.from_wkt(data['geometry'])
 data_gdf = gpd.GeoDataFrame(data, geometry='geometry')
 #data_gdf["centroid"] = data_gdf.centroid
