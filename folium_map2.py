@@ -91,7 +91,7 @@ if st.checkbox("Show All Data", False):
     st.write(raw_data)
 
 select_district = st.selectbox("Select district to see district data", (raw_data['district'].unique()))
-st.write(raw_data.loc[raw_data["district"] == select_district][["municipality","tof_area_ha", "forest_area_ha", "total_tree_cover_ha", "tof_percent","forest_percent"]])
+st.write(raw_data.loc[raw_data["district"] == select_district][["municipality","tof_area_ha", "forest_area_ha", "total_tree_cover_ha", "tof_percent","forest_percent"]].drop_duplicates(subset = ['municipality'], keep = 'first'))
 
 groups = raw_data[["district", "tof_area_ha","forest_area_ha", "total_tree_cover_ha"]] 
 grouped = groups.groupby(by = "district").sum()
