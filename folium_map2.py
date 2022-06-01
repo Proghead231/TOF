@@ -85,7 +85,9 @@ else:
     maps(forest_col, custom_scale2)
 
 raw_data = data_gdf[["municipality", "district","tof_area_ha", "forest_area_ha", "total_tree_cover_ha", "tof_percent","forest_percent"]]
-
+duplicated_row = raw_data[raw_data.duplicated()]
+st.write("duplicated rows in all cols")
+st.write(duplicated_row)
 
 if st.checkbox("Show All Data", False):
     st.write(raw_data)
